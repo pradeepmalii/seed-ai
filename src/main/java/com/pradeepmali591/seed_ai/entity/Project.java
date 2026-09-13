@@ -28,6 +28,7 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     User owner;
+
     Boolean isPublic = false;
 
     @CreationTimestamp

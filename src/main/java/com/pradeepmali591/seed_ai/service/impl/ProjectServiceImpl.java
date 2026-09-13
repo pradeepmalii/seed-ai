@@ -9,6 +9,7 @@ import com.pradeepmali591.seed_ai.mapper.ProjectMapper;
 import com.pradeepmali591.seed_ai.repository.ProjectRepository;
 import com.pradeepmali591.seed_ai.repository.UserRepository;
 import com.pradeepmali591.seed_ai.service.ProjectService;
+import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,10 +17,12 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@Transactional
 public class ProjectServiceImpl implements ProjectService {
 
     ProjectRepository projectRepository;
@@ -43,7 +46,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectSummaryResponse> getUserProjects(Long userId) {
-        return List.of();
+
+//        return projectRepository.findAllAccessibleByUser(userId)
+//                .stream()
+//                .map(projectMapper::toProjectSummaryResponse)
+//                .collect(Collectors.toList());
+
+        var project = projectRepository.findAllAccessibleByUser(userId);
+        return projectMapper.toListOfProjectSummaryResponse(project);
     }
 
     @Override

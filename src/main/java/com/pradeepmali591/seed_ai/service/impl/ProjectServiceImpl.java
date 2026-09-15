@@ -9,11 +9,11 @@ import com.pradeepmali591.seed_ai.mapper.ProjectMapper;
 import com.pradeepmali591.seed_ai.repository.ProjectRepository;
 import com.pradeepmali591.seed_ai.repository.UserRepository;
 import com.pradeepmali591.seed_ai.service.ProjectService;
-import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.time.Instant;
